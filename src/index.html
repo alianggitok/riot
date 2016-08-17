@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>constructor</title>
+<style>
+	h2{color:yellow}
+</style>
+</head>
+
+<body>
+	<h1>RIOT DDMO</h1><hr>
+
+	<div riot-tag="demo1" data-name="a"></div><hr>
+	<!--这种写法相当于<demo1 data-name="a"></demo1>-->
+
+	<demo2 data-name="b"><b>this is html yield</b></demo2><hr>
+
+	<demo2 data-name="c"><yield to="html">this is html yield</yield></demo2><hr>
+
+	<mixin></mixin><hr>
+
+	event: <event1></event1><hr>
+
+	observable: <observable></observable><hr>
+
+</body>
+</html>
+
