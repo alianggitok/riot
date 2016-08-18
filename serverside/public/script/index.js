@@ -1,4 +1,4 @@
-webpackJsonp([0,2],[
+webpackJsonp([0,1],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -13,15 +13,14 @@ webpackJsonp([0,2],[
 	__webpack_require__(2);
 	__webpack_require__(6);
 
-	__webpack_require__.e/* nsure */(1, function (require) {
-		__webpack_require__(7);
-	});
+	__webpack_require__(7);
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($, riot) {//这里的对象可以作为多个组件的共享对象
+	//作用域在tag内部
 	var shareData = {
 		data: {
 			name: 'mixin'
@@ -4447,7 +4446,7 @@ webpackJsonp([0,2],[
 
 		_tag.click = function () {
 			events.pop(function () {
-				//调用全局事件（方法）
+				//调用全局事件or方法（写在render.js文件中）
 				alert('do somthing');
 				events.trigger('pop2'); //触发事件
 			});
@@ -4458,6 +4457,69 @@ webpackJsonp([0,2],[
 			alert('event done');
 		});
 	});
+
+	riot.tag2('observable', '<button onclick="{click(\'start\')}" type="button">start</button> <button onclick="{click(\'stop\')}" type="button">stop</button> <button onclick="{click(\'other\')}" type="button">other</button> <button onclick="{click(\'beOff\')}" type="button">this event is deleted</button>', '', '', function (opts) {
+		var _tag = this;
+
+		function Obser() {
+			//创建一个事件侦听实例
+			riot.observable(this);
+			this.on('start stop beOff', function (type) {
+				//在实例中注册事件，多个事件间用空格隔开
+				alert(type + ' done!');
+			});
+			this.on('*', function (type) {
+				//这样可以监听所有该实例上触发的事件
+				alert(type + ' done!');
+			});
+		}
+
+		var obser = new Obser();
+
+		obser.off('beOff', function () {
+			alert('off');
+		});
+
+		_tag.click = function (type) {
+			return function () {
+				obser.trigger(type); //触发事件
+			};
+		};
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(riot) {(function () {
+		// riot.compile(['../components/demo.tag'],function(){
+		// 	alert('compile complete')
+		// });
+
+		riot.mount('demo1', {
+			title: 'The First Riot Demo'
+		});
+
+		var demo2s = riot.mount('demo2'); //返回一个组件实例的数组
+		demo2s[0].changeColor(); //可以调用实例内的方法、属性
+
+		riot.mount('mixin');
+
+		//events
+		var events = riot.observable(); //创建事件监听器实例
+		events.pop = function (callback) {
+			//在全局创建一个事件方法
+			alert('pops');
+			callback();
+		};
+
+		riot.mount('event1', {
+			events: events //将事件监听对象传入tag，在标签中通过opts访问该事件对象
+		});
+		riot.mount('event2');
+		riot.mount('observable');
+	})();
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }

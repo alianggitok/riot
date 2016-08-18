@@ -1,4 +1,5 @@
 //这里的对象可以作为多个组件的共享对象
+//作用域在tag内部
 var shareData={
 	data:{
 		name:'mixin'
@@ -30,7 +31,7 @@ riot.mixin('mixinData',{
 
 		var _tag=this;
 		_tag.mixin(shareData);//混入共享对象
-		console.log(_tag,_tag.root,_tag.data.name);
+//		console.log(_tag,_tag.root,_tag.data.name);
 		
 		_tag.msg='Hello,riot!';
 		_tag.items=[
@@ -63,12 +64,12 @@ riot.mixin('mixinData',{
 	</form>
 	<yield/><!--<yield/>占位符，在html上，被标签包含的html在这里还原，渲染后是没有这个标签的-->
 	<div name="name">{data.name}</div>
-	<yield from="html"/><!--支持多点占位符，from、to属性-->
+	<yield from="html"/><!--支持多点占位符，通过from、to属性控制插入点-->
 	<!-- 带id、name的元素可以直接被标签内的js访问到，并且可以嵌套，比如this.name、this.form.name -->
 	<script>
 		var _tag=this;
 		_tag.mixin(shareData);//混入共享对象
-		console.log(_tag.root,_tag.data.name,_tag.form.name)
+//		console.log(_tag.root,_tag.data.name,_tag.form.name)
 
 		$(_tag.form.name).on('keyup change',function(){
 			console.log(this.value);

@@ -20,9 +20,18 @@
 
 	<mixin></mixin><hr>
 
-	event: <event1></event1><hr>
+	event: <event1></event1><event2></event2><hr>
 
 	observable: <observable></observable><hr>
+
+
+<!-- 可选择在js的 riot.compile() 中载入
+	<script type="riot/tag" src="components/demo.tag"></script>
+	<script type="riot/tag" src="components/event.tag"></script>
+-->
+	<script src="lib/jquery-1.12.4/jquery.min.js"></script>
+	<script src="lib/riot-2.5.0/riot+compiler.min.js"></script>
+	<script src="scripts/render.js"></script>
 
 </body>
 </html>
