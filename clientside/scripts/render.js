@@ -22,7 +22,6 @@
 				events:events//将事件监听对象传入tag，在标签中通过opts访问该事件对象
 			});
 			riot.mount('event2');
-			riot.mount('observable');
 		}
 	};
 

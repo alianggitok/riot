@@ -1,7 +1,4 @@
 (function(){
-	// riot.compile(['../components/demo.tag'],function(){
-	// 	alert('compile complete')
-	// });
 
 	riot.mount('demo1',{
 		title:'The First Riot Demo'
@@ -14,7 +11,7 @@
 
 	//events
 	var events=riot.observable();//创建事件监听器实例
-	events.pop=function(callback){//在全局创建一个事件方法
+		events.pop=function(callback){//在相对全局创建一个事件方法
 		alert('pops');
 		callback();
 	};
@@ -23,7 +20,6 @@
 		events:events//将事件监听对象传入tag，在标签中通过opts访问该事件对象
 	});
 	riot.mount('event2');
-	riot.mount('observable');
 
 
-}());
+}(riot));

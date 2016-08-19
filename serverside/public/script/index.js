@@ -4468,13 +4468,13 @@ webpackJsonp([0,1],[
 				//在实例中注册事件，多个事件间用空格隔开
 				alert(type + ' done!');
 			});
-			this.on('*', function (type) {
-				//这样可以监听所有该实例上触发的事件
-				alert(type + ' done!');
-			});
+			//this.on('*',function(type){//这样可以监听所有该实例上触发的事件
+			//	alert(type+' done!');
+			//});
 		}
 
 		var obser = new Obser();
+		console.log(obser);
 
 		obser.off('beOff', function () {
 			alert('off');
@@ -4493,9 +4493,6 @@ webpackJsonp([0,1],[
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(riot) {(function () {
-		// riot.compile(['../components/demo.tag'],function(){
-		// 	alert('compile complete')
-		// });
 
 		riot.mount('demo1', {
 			title: 'The First Riot Demo'
@@ -4519,7 +4516,7 @@ webpackJsonp([0,1],[
 		});
 		riot.mount('event2');
 		riot.mount('observable');
-	})();
+	})(riot);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }
