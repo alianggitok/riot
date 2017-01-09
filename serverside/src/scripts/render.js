@@ -12,9 +12,9 @@
 	//events
 	var events=riot.observable();//创建事件监听器实例
 		events.pop=function(callback){//在相对全局创建一个事件方法
-		alert('pops');
-		callback();
-	};
+			alert('pops');
+			callback();
+		};
 
 	riot.mount('event1',{
 		events:events//将事件监听对象传入tag，在标签中通过opts访问该事件对象
